@@ -1,0 +1,33 @@
+<!-- 類似Ajax效果，但非真正的Ajax(xhr、XmlHttpRequest)-->
+<!-- Ajax可以局部更新網頁內容，但不用重新整理網頁 -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script>
+	function go(){
+		var url = document.getElementById("url").value;
+		document.getElementById("iframe1").src=url;
+	}
+
+</script>
+
+
+</head>
+<body>
+
+<div>
+	<p>請輸入地址：</p>
+	<p>
+		<input type="text" id="url" value="https://www.ptt.cc/bbs/Baseball/index.html"/>
+		<input type="button" value="搜尋" onclick="go()"/>
+	</p>
+</div>
+
+<div>
+	<iframe id="iframe1" style="width:100%; height:500px"></iframe>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<script type="text/javascript">
+	
+	// javascript物件
+	var user = {
+		name:"syun",
+		age:18,
+		sex:"男"
+	};
+	console.log(user);
+	// 將js物件轉為json
+	var json = JSON.stringify(user);
+	console.log(json);
+	
+	console.log("==============================================");
+	
+	// json物件
+	var json2 = '{"a":"Hello","b":"World"}';
+	console.log(json2);
+	// 將json轉為js物件
+	var obj = JSON.parse(json2);
+	console.log(obj);
+
+</script>
+
+</head>
+<body>
+
+</body>
+</html>

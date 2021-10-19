@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context
+        https://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/mvc
+        https://www.springframework.org/schema/mvc/spring-mvc.xsd">
+	
+	<!-- 將指定的套件註解生效，交給IOC容器統一管理-->
+	<context:component-scan base-package="com.syun.controller"></context:component-scan>
+	<mvc:default-servlet-handler />
+	<!-- 處理請求返回json字串的中文亂碼問題 -->
+    <mvc:annotation-driven>
+        <mvc:message-converters register-defaults="true">
+            <bean class="org.springframework.http.converter.StringHttpMessageConverter">
+				<constructor-arg value="UTF-8"></constructor-arg>
+			</bean>
+			<bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+				<property name="objectMapper">
+					<bean class="org.springframework.http.converter.json.Jackson2ObjectMapperFactoryBean">
+						<property name="failOnEmptyBeans" value="false"></property>
+					</bean>
+				</property>
+			</bean>
+        </mvc:message-converters>
+    </mvc:annotation-driven>
+	
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver" id="InternalResourceViewResolver">
+		<!-- /WEB-INF/jsp/xxx.jsp，在程式中直接寫xxx，不用寫完整的網址-->
+		<!-- 將網頁放在WEB-INF下，確保網頁不能由客戶端直接訪問到-->
+		<property name="prefix" value="/WEB-INF/jsp/"></property>
+		<property name="suffix" value=".jsp"></property>
+	</bean>
+	
+</beans>

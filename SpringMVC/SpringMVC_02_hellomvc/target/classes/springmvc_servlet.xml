@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!-- 映射器及適配器不一定要寫-->
+	<!-- 由映射器從請求的網址找到相對應的controller名稱-->
+	<bean class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping"/>
+	<!-- 由適配器找到要執行的controller，並取得由controller提供的資訊(msg)及轉發/重定向網址-->
+    <bean class="org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter"/>
+	
+	<!-- 視圖解析器找到要轉發/重定向網址，並提供該網頁要的資訊-->
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver" id="InternalResourceViewResolver">
+		<!-- /jsp/xxx.jsp，在程式中直接寫xxx，不用寫完整的網址-->
+		<property name="prefix" value="/jsp/"></property>
+		<property name="suffix" value=".jsp"></property>
+	</bean>
+	
+	<!--id=發請求的網址-->
+	<bean id="/hello" class="com.syun.controller.HelloController"></bean>
+
+</beans>
